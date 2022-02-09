@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!--    Spring 框架提供了 2 种短命名空间，可以简化 Spring 的 XML 配置，如下表。-->
+    <!--    xmlns:p="http://www.springframework.org/schema/p"-->
+    <!--    短命名空间	简化的 XML 配置	说明-->
+    <!--    p 命名空间	<bean> 元素中嵌套的 <property> 元素	是 setter 方式属性注入的一种快捷实现方式-->
+    <!--    c 命名空间	<bean> 元素中嵌套的 <constructor> 元素	是构造函数属性注入的一种快捷实现方式    -->
+
+    <!--    使用 p 命名空间注入依赖时，必须注意以下 3 点：-->
+    <!--    Java 类中必须有 setter 方法；-->
+    <!--    Java 类中必须有无参构造器（类中不包含任何带参构造函数的情况，无参构造函数默认存在）；-->
+    <!--    在使用 p 命名空间实现属性注入前，XML 配置的 <beans> 元素内必须先导入 p 命名空间的 XML 约束。-->
+
+    <!--    短命名空间,等同于上面定义中的property-->
+    <bean id="employee" class="com.wwt.spring.demo.Employee" p:empName="小李" p:dept-ref="dept" p:empNo="22222"></bean>
+
+    <bean id="dept" class="com.wwt.spring.demo.Dept" p:deptNo="1111" p:deptName="技术部"></bean>
+</beans>

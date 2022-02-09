@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!--    Bean 定义模板-->
+    <!--    在父 Bean 的定义中，有一个十分重要的属性，那就是 abstract 属性。如果一个父 Bean 的 abstract 属性值为 true，则表明这个 Bean 是抽象的。-->
+    <!--    抽象的父 Bean 只能作为模板被子 Bean 继承，它不能实例化，也不能被其他 Bean 引用，更不能在代码中根据 id 调用 getBean() 方法获取，否则就会返回错误。-->
+    <!--    在父 Bean 的定义中，既可以指定 class 属性，也可以不指定 class 属性。如果父 Bean 定义没有明确地指定 class 属性，那么这个父 Bean 的 abstract 属性就必须为 true。-->
+    <bean id="animal" class="com.wwt.spring.demo.Animal" abstract="true">
+        <property name="name" value="动物"></property>
+        <property name="age" value="10"></property>
+    </bean>
+    <bean id="dog" class="com.wwt.spring.demo.Animal_Dog" parent="animal">
+        <property name="name" value="小狗"></property>
+        <property name="call" value="汪汪汪……"></property>
+    </bean>
+</beans>

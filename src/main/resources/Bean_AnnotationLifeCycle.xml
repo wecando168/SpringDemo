@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--注解扫描-->
+    <context:component-scan base-package="com.wwt.spring.demo"></context:component-scan>
+    <!--通过 XML 配置指定生命周期回调方法-->
+    <bean id="annotationLifeCycleBean" class="com.wwt.spring.demo.AnnotationLifeCycleBean">
+        <constructor-arg name="webName" value="C语言中文网3"></constructor-arg>
+        <constructor-arg name="url" value="c.biancheng.net"></constructor-arg>
+    </bean>
+</beans>

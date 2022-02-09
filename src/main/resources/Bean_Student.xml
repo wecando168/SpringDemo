@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!--constructor-arg bean 元素的子元素，通过该元素，将构造参数传入，以实现 Bean 的实例化。该元素的 index 属性指定构造参数的序号（从 0 开始），type 属性指定构造参数的类型。-->
+    <!--在 <bean> 元素内使用 <constructor-arg> 元素，对构造函数内的属性进行赋值，Bean 的构造函数内有多少参数，就需要使用多少个 <constructor-arg> 元素。-->
+    <!--<bean id="xxx" ...>:id是Bean的唯一标识符，Spring IoC 容器对 Bean 的配置和管理都通过该属性完成。id 的值必须以字母开始，可以使用字母、数字、下划线等符号。-->
+    <!--id名称自己随意定义，按惯例是跟类名相同，收字母小写，驼峰命名，方便查询与对应-->
+    <bean id="student" class="com.wwt.spring.demo.Student">
+        <!--通过constructor-arg实质是调用类构造函数-->
+        <constructor-arg name="id" value="2"></constructor-arg>
+        <constructor-arg name="name" value="李四"></constructor-arg>
+        <!--ref：<property> 和 <constructor-arg> 等元素的子元索，用于指定对某个 Bean 实例的引用，即 <bean> 元素中的 id 或 name 属性。-->
+        <!--这里是引用下面这个id="grade"的bean-->
+        <constructor-arg name="grade" ref="grade"></constructor-arg>
+
+        <!--
+        通过property实质是调用类方法
+        使用 property 元素完成属性注入
+        name: 类中的属性名称，例如 id,name
+        value: 向属性注入的值 例如 学生的 id 为 1，name 为张三
+        -->
+        <property name="id" value="1"></property>
+        <property name="name" value="张三"></property>
+        <property name="grade" ref="grade"></property>
+    </bean>
+
+    <bean id="grade" class="com.wwt.spring.demo.Grade">
+        <constructor-arg name="gradeId" value="4"></constructor-arg>
+        <constructor-arg name="gradeName" value="四年级"></constructor-arg>
+
+        <property name="gradeId" value="3"></property>
+        <property name="gradeName" value="三年级"></property>
+    </bean>
+</beans>

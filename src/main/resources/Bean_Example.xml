@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <bean id="exampleBean" class="com.wwt.spring.demo.ExampleBean">
+        <!--使用null 标签注入 Null 值-->
+
+        <!--        跟下面的写法一样的意思？-->
+        <!--        <property name="propertyNull"  value="null"></property>-->
+
+        <property name="propertyNull">
+            <null/>
+        </property>
+
+        <!--使用空参数注入空字符串-->
+        <property name="propertyEmpty" value=""></property>
+
+        <!--通过转义注入包含特殊符号的字面量-->
+        <!--特殊字符	转义字符-->
+        <!--&	&amp;-->
+        <!--<	&lt;-->
+        <!-->	&gt;-->
+        <!--＂	&quot;-->
+        <!--＇	&apos;-->
+        <property name="propertyLiteral1" value="&lt;C语言中文网&gt;"></property>
+
+        <!--使用 <![CDATA[]]> 将包含特殊符号的字面量注入-->
+        <!--通过短字符串 <![CDATA[]]> 将包含特殊符号的属性值包裹起来，可以让 XML 解析器忽略对其中内容的解析，以属性原本的样子注入到 Bean 中。-->
+        <!--使用短字符串 <![CDATA[]]> 需要注意以下几点：-->
+        <!--此部分不能再包含”]]>”；-->
+        <!--不允许嵌套使用；-->
+        <!--“]]>”中不能包含空格或者换行。-->
+        <property name="propertyLiteral2">
+            <value><![CDATA[<c.biancheng.net>]]></value>
+        </property>
+
+        <!--注入依赖的 Bean-->
+        <property name="dependBean" ref="dependBean"></property>
+
+        <!--级联属性赋值-->
+        <property name="dependBean.dependProperty" value="级联属性赋值"></property>
+    </bean>
+
+    <!--对 ExampleBean 依赖的 Bean 进行定义-->
+    <bean id="dependBean" class="com.wwt.spring.demo.DependBean">
+        <!--对属性进行赋值-->
+        <property name="dependProperty" value="依赖 Bean 内部赋值"></property>
+    </bean>
+</beans>

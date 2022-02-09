@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="enmloyee" class="com.wwt.spring.demo.Employee">
+        <property name="empNo" value="1"></property>
+        <property name="empName" value="123"></property>
+        <property name="dept" ref="dept"></property>
+    </bean>
+
+    <bean id="dept" class="com.wwt.spring.demo.Dept">
+        <property name="deptNo" value="1"></property>
+        <property name="deptName" value="123"></property>
+    </bean>
+
+    <!--在 <bean> 标签下的 <property> 元素中，再次使用 <bean> 元素对内部 Bean 进行定义，格式如下。-->
+    <!--内部 Bean 都是匿名的，不需要指定 id 和 name 的。即使制定了，IoC 容器也不会将它作为区分 Bean 的标识符，反而会无视 Bean 的 Scope 标签。因此内部 Bean 几乎总是匿名的，且总会随着外部的 Bean 创建。内部 Bean 是无法被注入到它所在的 Bean 以外的任何其他 Bean 的。-->
+    <!--等同于上面的定义方式-->
+    <bean id="insidPropertyEnmloyee" class="com.wwt.spring.demo.Employee">
+        <property name="empNo" value="001"></property>
+        <property name="empName" value="小王"></property>
+        <property name="dept">
+            <bean class="com.wwt.spring.demo.Dept">
+                <property name="deptNo" value="004"></property>
+                <property name="deptName" value="技术部"></property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="insidConstructorArgEnmloyee" class="com.wwt.spring.demo.Employee">
+        <constructor-arg name="empNo" value="002"></constructor-arg>
+        <constructor-arg name="empName" value="小李"></constructor-arg>
+        <constructor-arg name="dept">
+            <!--内部 Bean-->
+            <bean class="com.wwt.spring.demo.Dept">
+                <constructor-arg name="deptNo" value="005"></constructor-arg>
+                <constructor-arg name="deptName" value="运维部"></constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+</beans>

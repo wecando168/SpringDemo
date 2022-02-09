@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!--通过 XML 配置指定生命周期回调方法-->
+    <bean id="xmlLifeCycleBean" class="com.wwt.spring.demo.XMLLifeCycleBean" init-method="init"
+          destroy-method="destroy">
+        <property name="webName" value="C语言中文网2"></property>
+        <property name="url" value="c.biancheng.net"></property>
+    </bean>
+</beans>

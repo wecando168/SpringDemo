@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="helloWorld" class="com.wwt.spring.demo.HelloWorld"
+          init-method="init" destroy-method="destroy">
+        <property name="message" value="Hello World！"/>
+    </bean>
+
+    <!-- 注册处理器 -->
+    <bean class="com.wwt.spring.demo.InitHelloWorld1"/>
+    <bean class="com.wwt.spring.demo.InitHelloWorld2"/>
+</beans>
